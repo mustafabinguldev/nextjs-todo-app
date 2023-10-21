@@ -56,6 +56,26 @@ export const TodoProvider = ({ children }) => {
         setTasks(newTasks);
         deleteTask(id);
         
+      },
+
+      filteredTasks: (filter, tasks) => {
+        return tasks.filter((task) => {
+           if (filter=="finish") {
+             if (task.state == true) {
+              return true; 
+            }else{
+              ;return false;
+            }
+           }else if (filter == "continues") {
+            if (task.state == false) {
+              return true;
+            }else {
+              return false;
+            }
+           }else{
+            return true;
+           }
+        })
       }
 
 
