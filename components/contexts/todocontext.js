@@ -58,22 +58,28 @@ export const TodoProvider = ({ children }) => {
         
       },
 
-      filteredTasks: (filter, tasks) => {
+      filteredTasks: (filter, tasks, filteredText) => {
         return tasks.filter((task) => {
            if (filter=="finish") {
              if (task.state == true) {
-              return true; 
+              if (task.name.toLowerCase().includes(filteredText.toLowerCase())) {
+                return true; 
+              }
             }else{
               ;return false;
             }
            }else if (filter == "continues") {
-            if (task.state == false) {
-              return true;
+            if (task.name.toLowerCase().includes(filteredText.toLowerCase())) {
+              return true; 
             }else {
               return false;
             }
            }else{
-            return true;
+            if (task.name.toLowerCase().includes(filteredText.toLowerCase())) {
+              return true; 
+            }else{
+              return false;
+            }
            }
         })
       }
