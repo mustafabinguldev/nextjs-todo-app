@@ -8,6 +8,7 @@ function TodoList() {
 
   const [selection, setSelection] = useState("");
   const [filteredText, setFilteredText] = useState("");
+  const [orderSize, setOrderSize] = useState(4);
 
   return (
     <div>
@@ -30,9 +31,15 @@ function TodoList() {
         }} type="button" class={"px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 " + (selection == "" ? ("dark:text-sky-400") : ("dark:text-white")) + " dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"}>
           All
         </button>
-
-
       </div>
+
+      <select id='order' onChange={(e)=>{setOrderSize(e.target.value)}} class="mt-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+         <option value={1}>Important</option>
+         <option value={2}>Need</option>
+         <option value={3}>Normal</option>
+         <option value={4}>All</option>
+      </select>
+
       <form class="mt-6 mb-6">
         <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
         <div class="relative">
@@ -65,7 +72,7 @@ function TodoList() {
           </thead>
           <tbody>
 
-            {filteredTasks(selection, tasks, filteredText).map((task) => {
+            {filteredTasks(selection, tasks, filteredText, orderSize).map((task) => {
               return (
 
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">

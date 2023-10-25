@@ -17,9 +17,9 @@ export const TodoProvider = ({ children }) => {
 
     <TodoContext.Provider value={{
 
-      tasks: tasks, 
-      setTasks: setTasks, 
-      changeState: (id,state) => {
+      tasks: tasks,
+      setTasks: setTasks,
+      changeState: (id, state) => {
         const newTasks = [...tasks];
         newTasks[id].state = state;
         setTasks(newTasks);
@@ -28,25 +28,25 @@ export const TodoProvider = ({ children }) => {
         setTaskState(id, state);
       },
 
-      addTask: (name) => {
-        
-         const newTasks = [... tasks, {id: tasks.length ,name: name, state: false}]
-         setTasks(newTasks);
-         addTask(name);
-         
+      addTask: (name, order) => {
+
+        const newTasks = [...tasks, { id: tasks.length, name: name, state: false, order: order}]
+        setTasks(newTasks);
+        addTask(name);
+
       },
 
 
       deleteTask: (id) => {
-        const olderTasks = [... tasks]
+        const olderTasks = [...tasks]
         olderTasks[id] = null;
-     
+
         let index = 0;
-        
+
         const newTasks = [];
-        olderTasks.map((m)=> {
-          if (m != null){
-            let element = {id: index, name: m.name, state: m.state} 
+        olderTasks.map((m) => {
+          if (m != null) {
+            let element = { id: index, name: m.name, state: m.state }
             newTasks.push(element);
 
             index = index + 1;
@@ -55,32 +55,50 @@ export const TodoProvider = ({ children }) => {
 
         setTasks(newTasks);
         deleteTask(id);
-        
+
       },
 
-      filteredTasks: (filter, tasks, filteredText) => {
+      filteredTasks: (filter, tasks, filteredText, order) => {
         return tasks.filter((task) => {
-           if (filter=="finish") {
-             if (task.state == true) {
+          if (filter == "finish") {
+            if (task.state == true) {
               if (task.name.toLowerCase().includes(filteredText.toLowerCase())) {
-                return true; 
+                if (order != 4) {
+                  if (task.order != order) {
+                    return false;
+                  }
+                }
+                return true;
               }
-            }else{
-              ;return false;
+            } else {
+              ; return false;
             }
-           }else if (filter == "continues") {
+          } else if (filter == "continues") {
+            if (task.state == true) {
+                return false;
+            }
             if (task.name.toLowerCase().includes(filteredText.toLowerCase())) {
-              return true; 
-            }else {
+              if (order != 4) {
+                if (task.order != order) {
+                  return false;
+                }
+              }
+              return true;
+            } else {
               return false;
             }
-           }else{
+          } else {
             if (task.name.toLowerCase().includes(filteredText.toLowerCase())) {
-              return true; 
-            }else{
+              if (order != 4) {
+                if (task.order != order) {
+                  return false;
+                }
+              }
+              return true;
+            } else {
               return false;
             }
-           }
+          }
         })
       }
 

@@ -3,9 +3,10 @@ export const getAllTodos = () => {
    
    return [
 
-   {id: 0, name: "Exercise", state: false}, 
-   {id: 1, name: "Study Spanish", state: false}, 
-   {id: 2, name: "Chess Practice", state: false}]
+   {id: 0, name: "Exercise", state: false, order: 2},       
+   {id: 1, name: "Study Math", state: false, order: 1}, 
+   {id: 1, name: "Study Spanish", state: false, order: 1}, 
+   {id: 2, name: "Chess Practice", state: false, order: 3}]
 
 }
 
