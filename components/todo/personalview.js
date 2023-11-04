@@ -8,6 +8,8 @@ function PersonalView() {
     <div className=''>
       <section class="bg-gray-50 dark:bg-gray-900">
         <TodoProvider>
+        <br/>
+        <div className='cursor-pointer'><a className='border rounded-lg p-5 mt-10 md:h-screen' href='https://github.com/BingulHan'>Github @BingulHan</a></div>
           <div className='flex'>
             <div class="flex flex-col items-center justify-center px-6 py-8 ml-auto md:h-screen lg:py-0">
               <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -25,8 +27,13 @@ function PersonalView() {
               </div>
             </div>
 
+
           </div>
+
+      
         </TodoProvider>
+
+    
       </section>
     </div>
   )
